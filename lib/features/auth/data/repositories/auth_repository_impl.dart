@@ -36,16 +36,6 @@ class AuthRepositoryImpl implements AuthRepository {
         password: password,
       ),
     );
-    try {
-      final user = await remoteDataSource.signUpWithEmailPassword(
-        name: name,
-        email: email,
-        password: password,
-      );
-      return right(user);
-    } on ServerException catch (e) {
-      return left(Failure(e.message));
-    }
   }
 
   Future<Either<Failure, User>> _getUser(
@@ -56,6 +46,20 @@ class AuthRepositoryImpl implements AuthRepository {
       return right(user);
     } on sb.AuthException catch (e) {
       return left(Failure(e.message));
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> currentUser() async {
+    try {
+      final user = await remoteDataSource.getCurrentUserData();
+
+      if (user == null) {
+        return left(Failure("User not logged in !"));
+      }
+      return right(user);
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }
