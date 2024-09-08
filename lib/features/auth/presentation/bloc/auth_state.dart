@@ -5,7 +5,7 @@ sealed class AuthState {
   const AuthState();
 }
 
-class AuthInitial extends AuthState {}
+final class AuthInitial extends AuthState {}
 
 final class AuthLoading extends AuthState {}
 

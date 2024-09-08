@@ -1,9 +1,8 @@
 import 'package:blog_app/core/error/failures.dart';
 import 'package:blog_app/core/usecase/usecase.dart';
-import 'package:fpdart/src/either.dart';
-
-import '../../../../core/common/entities/user.dart';
-import '../repository/auth_repository.dart';
+import 'package:blog_app/core/common/entities/user.dart';
+import 'package:blog_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:fpdart/fpdart.dart';
 
 class UserLogin implements UseCase<User, UserLoginParams> {
   final AuthRepository authRepository;
@@ -22,5 +21,8 @@ class UserLoginParams {
   final String email;
   final String password;
 
-  UserLoginParams({required this.email, required this.password});
+  UserLoginParams({
+    required this.email,
+    required this.password,
+  });
 }

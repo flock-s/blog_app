@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class AuthField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
-  final bool isObsecuredText;
+  final bool isObscureText;
   const AuthField({
     super.key,
     required this.hintText,
     required this.controller,
-    this.isObsecuredText = false,
+    this.isObscureText = false,
   });
 
   @override
@@ -20,11 +20,11 @@ class AuthField extends StatelessWidget {
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return "$hintText is missing";
+          return "$hintText is missing!";
         }
         return null;
       },
-      obscureText: isObsecuredText,
+      obscureText: isObscureText,
     );
   }
 }
